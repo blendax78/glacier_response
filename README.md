@@ -16,5 +16,6 @@ php glacier_response.php "$(glacier-cmd upload --name 'bookmarks.html' --descrip
 
 Using find:
 <code>
-find . -name 'find*' -exec bash -c 'abc=$(glacier-cmd upload --name "{}" --description "{}" Test_Vault "{}") ; php /home/blendax/Saves/scripts/php/glacier_response.php "$abc" Test_Vault' \;
+find . -name 'find*' -exec bash -c 'abc=$(glacier-cmd upload --name "{}" --description "{}" Test_Vault "{}") ; \
+ php /home/blendax/Saves/scripts/php/glacier_response.php "$abc" Test_Vault' \;
 </code>
