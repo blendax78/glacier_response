@@ -2,12 +2,7 @@
 <?php
 
 /*
-Script Requires MeekroDB: http://www.meekro.com/ and amazon-glacier-cmd-interface https://github.com/uskudnik/amazon-glacier-cmd-interface
-
 Example:
-
-glacier_response.php <JSON glacier-cmd response> <vault name>
-
 php glacier_response.php "$(glacier-cmd upload --name 'bookmarks.html' --description 'bookmarks.html' Test_Vault bookmarks.html)" Test_Vault
 
 Using find:
@@ -22,14 +17,16 @@ DB::$user = "";
 DB::$password = "";
 DB::$dbName = "";
 
-process_input($argv,$argc);
+# Allows text to be piped into script
+#$pipe = readfile("php://stdin");
 
+process_input($argv,$argc);
 function process_input($args = null, $argc = 0){
-  if ($argc == 1){
-		exit;
-	}else{
+	if($argc == 3 && strlen($args[1]) > 1){
 		$response = $args[1];
 		$vault = $args[2];
+	}else{
+		exit;
 	}
 	#Turn JSON into an array
 	$json = json_decode(strstr($response,"{"),true);
