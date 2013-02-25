@@ -4,4 +4,17 @@ After uploading a file to a glacier vault, this script takes the JSON response f
 
 Having a database of file names and archive IDs makes it easy to manage files in Glacier. 
 
-he database schema is pretty simple (below).
+The database schema is pretty simple (attached).
+
+Example:
+
+<code>
+glacier_response.php <JSON glacier-cmd response> <vault name>
+
+php glacier_response.php "$(glacier-cmd upload --name 'bookmarks.html' --description 'bookmarks.html' Test_Vault bookmarks.html)" Test_Vault
+</code>
+
+Using find:
+<code>
+find . -name 'find*' -exec bash -c 'abc=$(glacier-cmd upload --name "{}" --description "{}" Test_Vault "{}") ; php /home/blendax/Saves/scripts/php/glacier_response.php "$abc" Test_Vault' \;
+</code>
