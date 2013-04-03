@@ -45,12 +45,12 @@ function process($id, $name, $hash, $vault = "Test_Vault"){
 			DB::query("update glacier set updated = now() where id = {$r['id']};");
 		}
 	}else{
-		DB::query("insert into glacier (archive_id,hash,filename,created, updated) values ( %s, %s, %s, now(), now(), vault );",
-			$id,
-			$hash,
-			$name,
-			$vault);
-
+                DB::query("insert into glacier (archive_id,hash,filename,created, updated, vault) " .
+                        " values ( %s, %s, %s, now(), now() , %s);",
+                        $id,
+                        $hash,
+                        $name,
+                        $vault);
 	}
 #var_dump($output);
 }
